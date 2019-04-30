@@ -29,7 +29,7 @@ OBJ	=	$(SRC:.c=.o)
 
 CFLAGS += -W -Wall -pedantic -Wextra -g3
 
-NAME = 	mysh
+NAME =  42sh
 
 all: 	$(NAME)
 
