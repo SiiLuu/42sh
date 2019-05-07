@@ -43,6 +43,7 @@ $(NAME):	$(OBJ)
 
 clean:
 	@echo "removing *.o..."
+	@rm -f lib/*.o
 	@rm -f src/*.o
 	@rm -f *.o
 
