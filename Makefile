@@ -15,6 +15,7 @@ SRC	=	lib/my_putchar.c\
 		lib/my_putnbr_base.c\
 		lib/my_putstr_modif.c\
 		lib/my_str_to_word_array.c\
+		lib/str_to_word_tab_limited.c\
 		lib/my_strcmp.c\
 		lib/my_strcpy.c\
 		src/main.c\

@@ -62,5 +62,7 @@ list_t unsetenv_delete(list_t list, char *str);
 int count_line(char **env);
 list_t setenv_add_line(list_t list, char *str, char *str2);
 list_t setenv_modif_line(list_t list, char *str, char *remplace);
+char **get_path(char **env);
+char **str_to_word_tab_limited(char *str, char limit);
 
 #endif
