@@ -25,6 +25,7 @@ char *inputs(char *line, ssize_t read)
         if (read == -1)
             return (NULL);
     }
+    return (line);
 }
 
 char *get_input(void)
