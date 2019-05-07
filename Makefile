@@ -1,8 +1,8 @@
 ##
-## EPITECH PROJECT, 2018
-## Makefile
-## File description:
+## EPITECH PROJECT, 2019
 ## makefile
+## File description:
+## makefile for the minishell1
 ##
 
 SRC	=	lib/my_putchar.c\
@@ -26,23 +26,32 @@ SRC	=	lib/my_putchar.c\
 		src/basic_list.c\
 		src/modif_env.c
 
-OBJ	=	$(SRC:.c=.o)
-
-CFLAGS += -W -Wall -pedantic -Wextra
+OBJ 	=	$(SRC:.c=.o)
 
 NAME =  42sh
 
-all: 	$(NAME)
+CFLAGS += -W -Wall -Wextra -pedantic -I./include
 
-$(NAME): 	$(OBJ)
-	gcc -o $(NAME) $(OBJ)
+all:	$(NAME)
+
+$(NAME):	$(OBJ)
+		@echo "Compiling..."
+		@$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
+
+%.o : %.c
+		@echo "Compiling $@..."
+		@$(CC) -o $@ -c $< $(CFLAGS)
 
 clean:
-	rm -f *.o
-	rm -f src/*.o
-	rm -f lib/*.o
+	@echo "removing *.o..."
+	@rm -f src/*.o
+	@rm -f *.o
 
-fclean: clean
-	rm -f $(NAME)
+fclean:	clean
+	@echo "removing $(NAME)..."
+	@rm -f $(NAME)
 
 re: 	fclean all
+
+debug:	CFLAGS += -g3
+debug:	fclean all
