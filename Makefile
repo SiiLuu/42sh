@@ -28,7 +28,7 @@ SRC	=	lib/my_putchar.c\
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS += -W -Wall -pedantic -Wextra -g3
+CFLAGS += -W -Wall -pedantic -Wextra
 
 NAME =  42sh
 

@@ -104,7 +104,7 @@ int change_directory(char **tab)
             tab[1] = "/home/hugo\0";
         my_strcat(buff, tab[1]);
         if (chdir(buff) == -1)
-            my_printf("%s: No such file or directory.\n", tab[1]);
+            my_printf("%s: Not a directory.\n", tab[1]);
         return (1);
     }
     return (0);
