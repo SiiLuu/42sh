@@ -19,9 +19,13 @@ char *inputs(char *line, ssize_t read)
             return (NULL);
         }
     }
-    else
+    else {
+        if (!my_strcmp(line, "exit") || read == -1) {
+            return (NULL);
+        }
         if (read == -1)
             return (NULL);
+    }
     return (line);
 }
 
