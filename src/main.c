@@ -173,7 +173,8 @@ char **get_path(char **env)
     return (res);
 }
 
-int main(int argc, char const **argv, char **env)
+int main(int __attribute__((unused)) argc,
+    char __attribute__((unused)) const **argv, char **env)
 {
     char *str = 0;
     char **tab = 0;

@@ -7,7 +7,7 @@
 
 #include "../include/my.h"
 
-list_t env_modif2(char **env, list_t list, char **pathtab, int j)
+list_t env_modif2(list_t list, char **pathtab, int j)
 {
     if (j == 0) {
         if (line_exist(pathtab[1], list) && pathtab[2] != NULL)
@@ -51,7 +51,7 @@ int env_modif(char **env, char **pathtab)
 
     list = check_empty(list, env, i);
     if (!my_strcmp(pathtab[0], "setenv") && pathtab[1] != NULL) {
-        list = env_modif2(env, list, pathtab, 0);
+        list = env_modif2(list, pathtab, 0);
         return (1);
     }
     if (!my_strcmp(pathtab[0], "unsetenv")) {
@@ -59,7 +59,7 @@ int env_modif(char **env, char **pathtab)
             my_printf("unsetenv: Too few arguments.\n");
             return (1);
         }
-        list = env_modif2(env, list, pathtab, 1);
+        list = env_modif2(list, pathtab, 1);
         return (1);
     }
     if (check_display_env(pathtab, list))

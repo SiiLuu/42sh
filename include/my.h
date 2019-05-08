@@ -48,7 +48,7 @@ int change_directory(char **tab);
 int main_execution(char *pathtab, char **tab, char **env, char *str);
 char *my_getenv(char **env);
 char **array_memory2(char **array, char const *str);
-void control_c(void);
+void control_c(int __attribute__((unused)) contrl);
 int my_strcmp(char const *s1, char const *s2);
 int env_modif(char **env, char **pathtab);
 int check_exist(char *pathtab, char *str);

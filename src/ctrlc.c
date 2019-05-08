@@ -7,7 +7,7 @@
 
 #include "../include/my.h"
 
-void control_c(void)
+void control_c(int __attribute__((unused)) contrl)
 {
     my_putstr("\n$ ~ ");
 }
