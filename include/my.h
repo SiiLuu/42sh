@@ -44,7 +44,7 @@ char *my_strcat(char *dest, char const *src);
 char **sort_path(char **pathtab, char *path);
 char *find_path(char **env, char **tab);
 char **empty_env(char **env);
-int change_directory(char **tab, char **env);
+int change_directory(char **tab);
 int main_execution(char *pathtab, char **tab, char **env, char *str);
 void control_c(int __attribute__((unused)) contrl);
 int my_strcmp(char const *s1, char const *s2);
