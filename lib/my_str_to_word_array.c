@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../include/my.h"
+#include "my.h"
 
 int compt_space(char const *str)
 {
@@ -38,8 +38,6 @@ char *change_str_next(int j, char *newstr)
         newstr[j] = '\0';
         return (newstr);
     }
-    j += 2;
-    newstr[j] = '\0';
     return (newstr);
 }
 

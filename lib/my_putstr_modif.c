@@ -5,7 +5,7 @@
 ** my_putstr.c
 */
 
-#include "../include/my.h"
+#include "my.h"
 
 void my_putstr_modif2(char const *str, int i)
 {

@@ -2,7 +2,7 @@
 ## EPITECH PROJECT, 2019
 ## makefile
 ## File description:
-## makefile for the minishell1
+## makefile for the 42sh
 ##
 
 SRC	=	lib/my_putchar.c\
@@ -17,13 +17,16 @@ SRC	=	lib/my_putchar.c\
 		lib/my_str_to_word_array.c\
 		lib/my_strcmp.c\
 		lib/my_strcpy.c\
+		lib/str_to_word_tab_limited.c\
 		src/main.c\
 		src/directory.c\
 		src/ctrlc.c\
 		src/env.c\
 		src/check_exist.c\
 		src/basic_list.c\
-		src/modif_env.c
+		src/modif_env.c\
+		src/path.c\
+		src/input.c
 
 OBJ 	=	$(SRC:.c=.o)
 

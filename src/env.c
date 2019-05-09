@@ -5,7 +5,7 @@
 ** my_list
 */
 
-#include "../include/my.h"
+#include "my.h"
 
 list_t env_modif2(list_t list, char **pathtab, int j)
 {
@@ -65,4 +65,19 @@ int env_modif(char **env, char **pathtab)
     if (check_display_env(pathtab, list))
         return (1);
     return (0);
+}
+
+char *my_getenv(char **env)
+{
+    int i = 0;
+    int j = 0;
+
+    while (env[i] != 0) {
+        if (env[i][j] == 'P' && env[i][j + 1] == 'A' && env[i][j + 2] == 'T'
+            && env[i][j + 3] == 'H') {
+            return (env[i]);
+        }
+        i++;
+    }
+    return (NULL);
 }

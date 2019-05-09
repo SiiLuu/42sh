@@ -6,7 +6,7 @@
 */
 
 #include <stdarg.h>
-#include "../include/my.h"
+#include "my.h"
 #include <stdio.h>
 
 void switch1(char *str, va_list ap, int i)

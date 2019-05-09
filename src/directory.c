@@ -1,52 +1,11 @@
 /*
 ** EPITECH PROJECT, 2018
-** minishell1
+** 42sh
 ** File description:
-** minishell1
+** 42sh
 */
 
-#include "../include/my.h"
-
-char **sort_path(char **pathtab, char *path)
-{
-    int i = 5;
-    int itab = 0;
-    int jtab = 0;
-
-    while (path[i] != '\0') {
-        if (path[i] == ':') {
-            i++;
-            itab++;
-            jtab = 0;
-        }
-        pathtab[itab][jtab] = path[i];
-        i++;
-        jtab++;
-    }
-    return (pathtab);
-}
-
-char *find_path(char **env, char **tab)
-{
-    char *path = my_getenv(env);
-    char **pathtab = 0;
-    int i = 0;
-    int j = 0;
-
-    pathtab = array_memory2(pathtab, path);
-    pathtab = sort_path(pathtab, path);
-    while (pathtab[i] != NULL) {
-        my_strcat(pathtab[i], "/");
-        my_strcat(pathtab[i], tab[0]);
-        j = access(pathtab[i], 0);
-        if (j == -1)
-            pathtab[i] = "NULL";
-        else if (j == 0)
-            return (pathtab[i]);
-        i++;
-    }
-    return (NULL);
-}
+#include "my.h"
 
 char **empty_env(char **env)
 {
