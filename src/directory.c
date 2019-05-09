@@ -24,10 +24,10 @@ int change_directory(char **tab)
         getcwd(buff, sizeof buff);
         my_strcat(buff, "/");
         if (tab[1] == NULL)
-            tab[1] = "/home/hugo\0";
+            tab[1] = "/home/hugo";
         my_strcat(buff, tab[1]);
         if (chdir(buff) == -1)
-            my_printf("%s: Not a directory.\n", tab[1]);
+            dprintf(2, "%s: Not a directory.\n", tab[1]);
         return (1);
     }
     return (0);

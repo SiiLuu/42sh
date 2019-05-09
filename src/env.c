@@ -56,7 +56,7 @@ int env_modif(char **env, char **pathtab)
     }
     if (!my_strcmp(pathtab[0], "unsetenv")) {
         if (pathtab[1] == NULL) {
-            my_printf("unsetenv: Too few arguments.\n");
+            dprintf(2, "unsetenv: Too few arguments.\n");
             return (1);
         }
         list = env_modif2(list, pathtab, 1);
@@ -67,14 +67,12 @@ int env_modif(char **env, char **pathtab)
     return (0);
 }
 
-char *my_getenv(char **env)
+char *my_getenv(char **env, char *elem)
 {
     int i = 0;
-    int j = 0;
 
     while (env[i] != 0) {
-        if (env[i][j] == 'P' && env[i][j + 1] == 'A' && env[i][j + 2] == 'T'
-            && env[i][j + 3] == 'H') {
+        if (strcmp(env[i], elem) == 0) {
             return (env[i]);
         }
         i++;
