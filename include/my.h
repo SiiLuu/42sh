@@ -38,7 +38,7 @@ void my_printf(char *str, ...);
 void my_putnbr_base(int nbr, char *base);
 int	my_getnbr(char *str);
 int my_putstr_modif(char const *str);
-char **my_str_to_word_array(char *str, char **tab);
+char **my_str_to_word_array(char const *str);
 char **array_memory(char **array, char const *str);
 char *my_strcat(char *dest, char const *src);
 char **sort_path(char **pathtab, char *path);
