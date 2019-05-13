@@ -13,8 +13,8 @@ static int spliter_count(char const *tab)
     int words = 0;
 
     while (tab[i] != '\0') {
-        words += (tab[i] != '\n' && tab[i] != '\0');
-        for (; tab[i] != '\0' && tab[i] != '\n' ; i++);
+        words += (tab[i] != ' ' && tab[i] != '\0');
+        for (; tab[i] != '\0' && tab[i] != ' ' ; i++);
         i++;
     }
     return (words);
@@ -29,7 +29,7 @@ char **my_str_to_word_array(char const *str)
 
     args = malloc(sizeof(char *) * (size + 1));
     for (int j = 0; j < size; j++) {
-        for (k = 0 ; str[i + k] != '\n' && str[i + k] != '\0' ; k++);
+        for (k = 0 ; str[i + k] != ' ' && str[i + k] != '\0' ; k++);
         args[j] = malloc(sizeof(char) * (k + 1));
         for (int l = 0; l < k; l++, i++)
             args[j][l] = str[i];
