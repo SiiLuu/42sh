@@ -4,7 +4,7 @@
 ** File description:
 ** minishell1
 */
-
+#include <errno.h>
 #include "../include/my.h"
 
 char **sort_path(char **pathtab, char *path)
@@ -74,10 +74,28 @@ int change_directory(char **tab)
     return (0);
 }
 
+void catch_seg_fault(pid_t w, pid_t pid, int status, char *pathtab)
+{
+    int i = 0;
+
+    if ((w = waitpid(pid, &status, 0)) != -1) {
+        if (WTERMSIG(status) == 8 && WCOREDUMP(status))
+            my_printf("floating point exception (core dumped)  %s\n", pathtab);
+        if (WTERMSIG(status) == 11 && WCOREDUMP(status))
+            my_printf("segmentation fault (core dumped)  %s\n", pathtab);
+        if (WTERMSIG(status) == 8 && !WCOREDUMP(status))
+            my_printf("floating point exception  %s\n", pathtab);
+        if (WTERMSIG(status) == 11 && !WCOREDUMP(status))
+            my_printf("segmentation fault  %s\n", pathtab);
+    }
+}
+
 int main_execution(char *pathtab, char **tab, char **env, char *str)
 {
     pid_t pid;
+    pid_t w = 0;
     struct stat sd;
+    int status = 0;
 
     if (check_exist(pathtab, str))
         return (1);
@@ -85,16 +103,13 @@ int main_execution(char *pathtab, char **tab, char **env, char *str)
         return (0);
     pid = fork();
     if (pid > 0)
-        wait(0);
-    else if (pid == 0)
+        catch_seg_fault(w, pid, status, pathtab);
+    else if (pid == 0) {
         if (execve(pathtab, tab, env) == -1) {
-            stat(pathtab, &sd);
-            if (S_ISDIR(sd.st_mode))
-                my_printf("%s: Permission denied.\n", str);
-            else
-                my_printf("%s: Command not found.\n", str);
+            printf("%d", errno);
             pid = getpid();
             kill(pid, SIGKILL);
         }
+    }
     return (0);
 }
