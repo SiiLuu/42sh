@@ -1,16 +1,16 @@
 /*
 ** EPITECH PROJECT, 2018
-** 42sh
+** minishell1
 ** File description:
-** 42sh
+** minishell1
 */
 
-#include "my.h"
+#include "../include/my.h"
 
 int check_exist(char *pathtab, char *str)
 {
     if (access(pathtab, F_OK) == -1) {
-        dprintf(2, "%s: Command not found.\n", str);
+        my_printf("%s: Command not found.\n", str);
         return (1);
     }
     return (0);

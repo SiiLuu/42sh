@@ -38,7 +38,7 @@ void my_printf(char *str, ...);
 void my_putnbr_base(int nbr, char *base);
 int	my_getnbr(char *str);
 int my_putstr_modif(char const *str);
-char **my_str_to_word_array(char const *str);
+char **my_str_to_word_array(char *str, char **tab);
 char **array_memory(char **array, char const *str);
 char *my_strcat(char *dest, char const *src);
 char **sort_path(char **pathtab, char *path);
@@ -46,6 +46,8 @@ char *find_path(char **env, char **tab);
 char **empty_env(char **env);
 int change_directory(char **tab);
 int main_execution(char *pathtab, char **tab, char **env, char *str);
+char *my_getenv(char **env);
+char **array_memory2(char **array, char const *str);
 void control_c(int __attribute__((unused)) contrl);
 int my_strcmp(char const *s1, char const *s2);
 int env_modif(char **env, char **pathtab);
@@ -60,10 +62,5 @@ list_t unsetenv_delete(list_t list, char *str);
 int count_line(char **env);
 list_t setenv_add_line(list_t list, char *str, char *str2);
 list_t setenv_modif_line(list_t list, char *str, char *remplace);
-char *init_path(char *path, char *env);
-char **get_path(char **env);
-char **str_to_word_tab_limited(char *str, char limit);
-char *my_getenv(char **env, char *elem);
-char *get_input(void);
 
 #endif
