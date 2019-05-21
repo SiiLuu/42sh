@@ -44,21 +44,12 @@ static char *string_cleaner(char *command)
 char *inputs(char *line, ssize_t read)
 {
     if (isatty(0)) {
-        if (!my_strcmp(line, "exit") || read == -1) {
+        if (read == -1 || !my_strcmp(line, "exit")) {
             my_printf("exit\n");
             return (NULL);
         }
-        if (read == -1) {
-            my_printf("exit");
-            return (NULL);
-        }
-    }
-    else {
-        if (!my_strcmp(line, "exit") || read == -1)
-            return (NULL);
-        if (read == -1)
-            return (NULL);
-    }
+    } else if (read == -1 || !my_strcmp(line, "exit"))
+        return (NULL);
     return (line);
 }
 
