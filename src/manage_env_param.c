@@ -8,6 +8,23 @@
 #include <stdbool.h>
 #include "../include/my.h"
 
+char **add_path(char **env)
+{
+    int i = 0;
+    int j = 0;
+    char **new_str = NULL;
+
+    for (i = 0; env[i] != NULL; i++);
+    new_str = malloc(sizeof(char *) * (i + 1));
+
+    for (j = 0; j != i; j++) {
+        new_str[j] = env[j];
+    }
+    new_str[j] = "PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin";
+    new_str[j + 1] = NULL;
+    return (new_str);
+}
+
 bool str_isalpha(char *str)
 {
     int count = 0;
