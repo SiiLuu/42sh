@@ -77,5 +77,6 @@ bool check_param_setenv(char **pathtab);
 int detect_pipe(char *str);
 char ***fill_tab(char *str2, char ***cmd, int pipe_nbr);
 char ***free_tab(char ***cmd);
+int manage_cd_params(char **tab, char *buff, size_t b);
 
 #endif

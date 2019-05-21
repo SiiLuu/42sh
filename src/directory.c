@@ -19,19 +19,13 @@ char **empty_env(char **env)
 
 int change_directory(char **tab)
 {
-    char buff[256];
+    char *buff;
+    int status = 0;
+    size_t b = 128;
 
-    if (tab[0][0] == 'c' && tab[0][1] == 'd') {
-        getcwd(buff, sizeof buff);
-        my_strcat(buff, "/");
-        if (tab[1] == NULL)
-            tab[1] = "/home/hugo";
-        my_strcat(buff, tab[1]);
-        if (chdir(buff) == -1)
-            dprintf(2, "%s: Not a directory.\n", tab[1]);
-        return (1);
-    }
-    return (0);
+    buff = malloc(sizeof(char) * 128);
+    status = manage_cd_params(tab, buff, b);
+    return (status);
 }
 
 void catch_seg_fault(pid_t pid)

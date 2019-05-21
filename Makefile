@@ -29,6 +29,7 @@ SRC	=	lib/my_putchar.c\
 		src/manage_env_param.c\
 		src/input.c\
 		src/pipe.c\
+		src/manage_cd.c\
 		src/parse_pipe.c
 
 OBJ 	=	$(SRC:.c=.o)
