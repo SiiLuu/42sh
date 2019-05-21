@@ -7,6 +7,24 @@
 
 #include "my.h"
 
+int check_and(char *str)
+{
+    for (int a = 0; str[a] != '\0'; a++)
+        if (str[a] == '&' && str[a + 1] == '&') {
+            return (1);
+        }
+    return (0);
+}
+
+int check_or(char *str)
+{
+    for (int a = 0; str[a] != '\0'; a++)
+        if (str[a] == '|' && str[a + 1] == '|') {
+            return (1);
+        }
+    return (0);
+}
+
 int main(int __attribute__((unused)) argc,
     char __attribute__((unused)) const **argv, char **env)
 {
@@ -26,6 +44,12 @@ int main(int __attribute__((unused)) argc,
                 break;
             tab = my_str_to_word_array(str);
             if ((check_sep(str) == 1)) {
+                exec_sep(tab, env, str, i);
+            }
+            else if ((check_and(str) == 1)) {
+                exec_sep(tab, env, str, i);
+            }
+            else if ((check_or(str) == 1)) {
                 exec_sep(tab, env, str, i);
             }
             else {

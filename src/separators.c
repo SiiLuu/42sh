@@ -10,8 +10,7 @@
 int check_sep(char *str)
 {
     for (int a = 0; str[a] != '\0'; a++)
-        if (str[a] == ';' || (str[a] == '&' && str[a + 1] == '&')
-        || (str[a] == '|' && str[a + 1] == '|')) {
+        if (str[a] == ';') {
             return (1);
         }
     return (0);
@@ -55,7 +54,7 @@ void exec_sep(char **tab, char **env, char *str, int i)
     while (1) {
         cmd = malloc(sizeof(tab));
         cmd = check_acces_sep(cmd, tab, &a);
-        if (env_modif(env, tab) || change_directory(tab))
+        if (env_modif(env, tab) || change_directory(tab) || detect_pipe(str))
             break;
         i = 0;
         pathtab2 = get_path(env);
