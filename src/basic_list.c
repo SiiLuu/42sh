@@ -5,7 +5,7 @@
 ** my_list
 */
 
-#include "../include/my.h"
+#include "my.h"
 
 list_t add_at_begin(list_t list, char *str)
 {

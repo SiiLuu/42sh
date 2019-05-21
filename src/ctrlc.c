@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2018
-** minishell1
+** 42sh
 ** File description:
-** minishell1
+** 42sh
 */
 
-#include "../include/my.h"
+#include "my.h"
 
 void control_c(int __attribute__((unused)) contrl)
 {

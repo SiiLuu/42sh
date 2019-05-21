@@ -5,7 +5,7 @@
 ** my_list
 */
 
-#include "../include/my.h"
+#include "my.h"
 
 list_t setenv_modif_line(list_t list, char *str, char *remplace)
 {
