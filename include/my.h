@@ -82,5 +82,6 @@ void exec_sep(char **tab, char **env, char *str, int i);
 char *acces_sep(char **pathtab2, char **cmd, char *pathtab, int *i);
 char **check_acces_sep(char **cmd, char **tab, int *a);
 int check_sep(char *str);
+char **add_path(char **env);
 
 #endif

@@ -10,9 +10,20 @@
 
 char **empty_env(char **env)
 {
+    int count = 0;
+
     if (env[0] == 0) {
         env[0] = "PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin";
         env[1] = NULL;
+        return (env);
+    }
+    for (int i = 0; env[i] != NULL; i++) {
+        if (env[i][0] == 'P' && env[i][1] == 'A' && env[i][2] == 'T' &&
+            env[i][3] == 'H' && env[i][4] == '=')
+            count = 1;
+    }
+    if (count != 1) {
+        env = add_path(env);
     }
     return (env);
 }
