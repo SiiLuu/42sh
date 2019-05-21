@@ -26,12 +26,8 @@ bool str_isalpha(char *str)
 
 bool check_param_setenv(char **pathtab)
 {
-    int i = 0;
-
-    for (i = 0; pathtab[i] != NULL; i++) {
-        if (str_isalpha(pathtab[i]) != true) {
-            return (false);
-        }
+    if (str_isalpha(pathtab[1]) != true) {
+        return (false);
     }
     return (true);
 }
