@@ -33,10 +33,8 @@ int change_directory(char **tab)
     return (0);
 }
 
-void catch_seg_fault(pid_t w, pid_t pid, int status, char *pathtab)
+void catch_seg_fault(pid_t w, pid_t pid, int status)
 {
-    int i = 0;
-
     if ((w = waitpid(pid, &status, 0)) != -1) {
         if (WTERMSIG(status) == 8 && WCOREDUMP(status))
             my_printf("floating point exception (core dumped)\n");
@@ -53,7 +51,6 @@ int main_execution(char *pathtab, char **tab, char **env, char *str)
 {
     pid_t pid = 0;
     pid_t w = 0;
-    struct stat sd;
     int status = 0;
 
     if (check_exist(pathtab, str))
@@ -62,7 +59,7 @@ int main_execution(char *pathtab, char **tab, char **env, char *str)
         return (0);
     pid = fork();
     if (pid > 0)
-        catch_seg_fault(w, pid, status, pathtab);
+        catch_seg_fault(w, pid, status);
     else if (pid == 0) {
         if (execve(pathtab, tab, env) == -1) {
             pid = getpid();
