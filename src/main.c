@@ -25,22 +25,27 @@ int main(int __attribute__((unused)) argc,
             if (my_strlen(str) == 0)
                 break;
             tab = my_str_to_word_array(str);
-            if (env_modif(env, tab) || change_directory(tab) || detect_pipe(str))
-                break;
-            i = 0;
-            pathtab2 = get_path(env);
-            while (pathtab2[i] != NULL) {
-                pathtab2[i] = my_strcat(pathtab2[i], "/");
-                pathtab2[i] = my_strcat(pathtab2[i], tab[0]);
-                if (access(pathtab2[i], F_OK) == 0) {
-                    pathtab = pathtab2[i];
-                    break;
-                }
-                i++;
+            if ((check_sep(str) == 1)) {
+                exec_sep(tab, env, str, i);
             }
-            if (access(pathtab2[i], F_OK) == -1)
-                pathtab = str;
-            main_execution(pathtab, tab, env, str);
+            else {
+                if (env_modif(env, tab) || change_directory(tab) || detect_pipe(str))
+                    break;
+                i = 0;
+                pathtab2 = get_path(env);
+                while (pathtab2[i] != NULL) {
+                    pathtab2[i] = my_strcat(pathtab2[i], "/");
+                    pathtab2[i] = my_strcat(pathtab2[i], tab[0]);
+                    if (access(pathtab2[i], F_OK) == 0) {
+                        pathtab = pathtab2[i];
+                        break;
+                    }
+                    i++;
+                }
+                if (access(pathtab2[i], F_OK) == -1)
+                    pathtab = str;
+                main_execution(pathtab, tab, env, str);
+            }
             free(tab);
         }
     return (0);

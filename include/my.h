@@ -78,5 +78,9 @@ int detect_pipe(char *str);
 char ***fill_tab(char *str2, char ***cmd, int pipe_nbr);
 char ***free_tab(char ***cmd);
 int manage_cd_params(char **tab, char *buff, size_t b);
+void exec_sep(char **tab, char **env, char *str, int i);
+char *acces_sep(char **pathtab2, char **cmd, char *pathtab, int *i);
+char **check_acces_sep(char **cmd, char **tab, int *a);
+int check_sep(char *str);
 
 #endif

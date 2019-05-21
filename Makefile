@@ -23,6 +23,7 @@ SRC	=	lib/my_putchar.c\
 		src/ctrlc.c\
 		src/env.c\
 		src/check_exist.c\
+		src/separators.c\
 		src/basic_list.c\
 		src/modif_env.c\
 		src/path.c\
