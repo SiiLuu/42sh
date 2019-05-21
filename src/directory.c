@@ -52,6 +52,7 @@ int main_execution(char *pathtab, char **tab, char **env, char *str)
     pid_t pid = 0;
     pid_t w = 0;
     int status = 0;
+    struct stat sd;
 
     if (check_exist(pathtab, str))
         return (1);
@@ -60,11 +61,13 @@ int main_execution(char *pathtab, char **tab, char **env, char *str)
     pid = fork();
     if (pid > 0)
         catch_seg_fault(w, pid, status);
-    else if (pid == 0) {
+    else if (pid == 0)
         if (execve(pathtab, tab, env) == -1) {
+             stat(pathtab, &sd);
+            if (S_ISDIR(sd.st_mode))
+                my_printf("%s: Permission denied.\n", str);
             pid = getpid();
             kill(pid, SIGKILL);
         }
-    }
     return (0);
 }

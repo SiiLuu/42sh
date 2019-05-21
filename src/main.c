@@ -22,6 +22,8 @@ int main(int __attribute__((unused)) argc,
             signal(SIGINT, control_c);
             if ((str = get_input()) == NULL)
                 return (0);
+            if (my_strlen(str) == 0)
+                break;
             tab = my_str_to_word_array(str);
             if (env_modif(env, tab) || change_directory(tab))
                 break;
