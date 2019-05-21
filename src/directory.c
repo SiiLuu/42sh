@@ -37,13 +37,13 @@ void catch_seg_fault(pid_t w, pid_t pid, int status)
 {
     if ((w = waitpid(pid, &status, 0)) != -1) {
         if (WTERMSIG(status) == 8 && WCOREDUMP(status))
-            my_printf("floating point exception (core dumped)\n");
+            my_printf("Floating point exception (core dumped)\n");
         if (WTERMSIG(status) == 11 && WCOREDUMP(status))
-            my_printf("segmentation fault (core dumped)\n");
+            my_printf("Segmentation fault (core dumped)\n");
         if (WTERMSIG(status) == 8 && !WCOREDUMP(status))
-            my_printf("floating point exception\n");
+            my_printf("Floating point exception\n");
         if (WTERMSIG(status) == 11 && !WCOREDUMP(status))
-            my_printf("segmentation fault\n");
+            my_printf("Segmentation fault\n");
     }
 }
 
