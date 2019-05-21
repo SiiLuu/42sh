@@ -5,8 +5,8 @@
 ** 42sh
 */
 
-#include "my.h"
 #include <errno.h>
+#include "my.h"
 
 char **empty_env(char **env)
 {
