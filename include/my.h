@@ -15,6 +15,11 @@
 #include <unistd.h>
 #include <string.h>
 #include <signal.h>
+#include <stdbool.h>
+
+
+#define SETENV_ERRSTR \
+    "setenv: Variable name must contain alphanumeric characters.\n"
 
 #ifndef MY_H__
 #define MY_H__
@@ -65,5 +70,9 @@ char **get_path(char **env);
 char **str_to_word_tab_limited(char *str, char limit);
 char *my_getenv(char **env, char *elem);
 char *get_input(void);
+list_t env_modif2(list_t list, char **pathtab, int j);
+int check_display_env(char **pathtab, list_t list);
+int check_env_or_setenv(char **pathtab);
+bool check_param_setenv(char **pathtab);
 
 #endif

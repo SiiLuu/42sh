@@ -26,6 +26,7 @@ SRC	=	lib/my_putchar.c\
 		src/basic_list.c\
 		src/modif_env.c\
 		src/path.c\
+		src/manage_env_param.c\
 		src/input.c
 
 OBJ 	=	$(SRC:.c=.o)

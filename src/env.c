@@ -5,6 +5,7 @@
 ** my_list
 */
 
+#include "stdbool.h"
 #include "my.h"
 
 list_t env_modif2(list_t list, char **pathtab, int j)
@@ -51,14 +52,16 @@ int env_modif(char **env, char **pathtab)
 
     list = check_empty(list, env, i);
     if (!my_strcmp(pathtab[0], "setenv") && pathtab[1] != NULL) {
-        list = env_modif2(list, pathtab, 0);
+        if (check_param_setenv(pathtab) == true) {
+            list = env_modif2(list, pathtab, 0);
+        }
+        else
+            my_putstr(SETENV_ERRSTR);
         return (1);
     }
     if (!my_strcmp(pathtab[0], "unsetenv")) {
-        if (pathtab[1] == NULL) {
-            dprintf(2, "unsetenv: Too few arguments.\n");
+        if (check_env_or_setenv(pathtab) == 1)
             return (1);
-        }
         list = env_modif2(list, pathtab, 1);
         return (1);
     }
