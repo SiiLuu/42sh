@@ -82,16 +82,24 @@ int check_wrong_command(char *pathtab, char *str)
     return (0);
 }
 
+int echo_command(char **tab, int return_value)
+{
+    if (strcmp(tab[0], "echo") == 0 && (strcmp(tab[1], "$?") == 0 ||
+        strcmp(tab[1], "\"$?\"") == 0 )) {
+        printf("%d\n", return_value);
+        return (1);
+    }
+    return (0);
+}
+
 int main_execution(char *pathtab, char **tab, char **env, char *str)
 {
     pid_t pid = 0;
     int i = 0;
     static int return_value = 0;
 
-    if (strcmp(tab[0], "echo") == 0 && strcmp(tab[1], "$?") == 0) {
-        printf("%d\n", return_value);
-        return (1);
-    }
+    if (echo_command(tab, return_value))
+        return (0);
     if (check_wrong_command(pathtab, str))
         return (0);
     pid = fork();
