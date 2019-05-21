@@ -38,9 +38,13 @@ int count_pipe(char *str)
 {
     int pipe = 0;
 
-    for (int i = 0; str[i] != '\0'; i++)
+    for (int i = 0; str[i] != '\0'; i++) {
         if (str[i] == '|')
             pipe += 1;
+        if ((str[i] == '|' && str[i + 1] == '|') || (str[i] == '&'
+            && str[i + 1] == '&') || str[i] == ';')
+            return (0);
+    }
     return (pipe);
 }
 
