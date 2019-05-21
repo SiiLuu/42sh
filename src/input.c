@@ -71,7 +71,7 @@ char *get_input(void)
     if (isatty(0))
         my_putstr("$ ~ ");
     read = getline(&line, &len, stdin);
-    if (line[read - 1] == '\n') {
+    if (read > 0 && line[read - 1] == '\n') {
         line[read] = 0;
         line[read - 1] = '\0';
     }
