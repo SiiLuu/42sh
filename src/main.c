@@ -25,7 +25,7 @@ int main(int __attribute__((unused)) argc,
             if (my_strlen(str) == 0)
                 break;
             tab = my_str_to_word_array(str);
-            if (env_modif(env, tab) || change_directory(tab))
+            if (env_modif(env, tab) || change_directory(tab) || detect_pipe(str))
                 break;
             i = 0;
             pathtab2 = get_path(env);

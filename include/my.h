@@ -16,13 +16,13 @@
 #include <string.h>
 #include <signal.h>
 #include <stdbool.h>
-
-
-#define SETENV_ERRSTR \
-    "setenv: Variable name must contain alphanumeric characters.\n"
+#include <assert.h>
 
 #ifndef MY_H__
 #define MY_H__
+
+#define SETENV_ERRSTR \
+    "setenv: Variable name must contain alphanumeric characters.\n"
 
 typedef struct element element_t;
 struct element
@@ -74,5 +74,8 @@ list_t env_modif2(list_t list, char **pathtab, int j);
 int check_display_env(char **pathtab, list_t list);
 int check_env_or_setenv(char **pathtab);
 bool check_param_setenv(char **pathtab);
+int detect_pipe(char *str);
+char ***fill_tab(char *str2, char ***cmd, int pipe_nbr);
+char ***free_tab(char ***cmd);
 
 #endif
