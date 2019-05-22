@@ -44,27 +44,72 @@ char *acces_sep(char **pathtab2, char **cmd, char *pathtab, int *i)
     return (NULL);
 }
 
+int my_strlentab(char **tab)
+{
+    int a = 0;
+
+    for (; tab[a] != NULL; a++) {
+        if (!strcmp(tab[a], ";"))
+            return (a);
+        a++;
+    }
+    return (a);
+}
+
+int my_strlencmd(char const *str)
+{
+    int i = 0;
+    int y = 0;
+    int z = 0;
+
+    for (; str[i] != '\0'; i++) {
+        z++;
+        if (str[i] == ' ' && z > y)
+            y = i;
+        else
+            z = 0;
+    }
+    return (y);
+}
+
 void exec_sep(char **tab, char **env, char *str, int i)
 {
     char **cmd = NULL;
     int a = 0;
     char *pathtab = 0;
     char **pathtab2 = 0;
+    char *pipe = NULL;
 
     while (1) {
-        cmd = malloc(sizeof(tab));
-        cmd = check_acces_sep(cmd, tab, &a);
-        if (env_modif(env, tab) || change_directory(tab) || detect_pipe(str))
-            break;
-        i = 0;
-        pathtab2 = get_path(env);
-        pathtab = acces_sep(pathtab2, cmd, pathtab, &i);
-        if (access(pathtab2[i], F_OK) == -1)
-            pathtab = str;
-        main_execution(pathtab, cmd, env, str);
+        while (1) {
+            pipe = malloc(sizeof(char) * 50);
+            cmd = malloc(sizeof(char *) * my_strlentab(tab) + 1);
+            for (int g = 0; g != my_strlencmd(str) - 1; g++)
+                cmd[g] = malloc(sizeof(char) * my_strlencmd(str));
+            cmd = check_acces_sep(cmd, tab, &a);
+            for (int y = 0; cmd[y] != NULL; y++) {
+                strcat(pipe, cmd[y]);
+                strcat(pipe, " ");
+            }
+            if (env_modif(env, cmd) || change_directory(cmd) || detect_pipe(pipe)) {
+                a++;
+                free(cmd);
+                free(pipe);
+                break;
+            }
+            i = 0;
+            pathtab2 = get_path(env);
+            pathtab = acces_sep(pathtab2, cmd, pathtab, &i);
+            if (access(pathtab2[i], F_OK) == -1)
+                pathtab = str;
+            main_execution(pathtab, cmd, env, str);
+            if (tab[a] == NULL)
+                break;
+            a++;
+            free(cmd);
+            free(pipe);
+        }
         if (tab[a] == NULL)
-            break;
-        a++;
+                break;
     }
-    free(cmd);
 }
