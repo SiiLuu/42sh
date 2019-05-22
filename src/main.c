@@ -53,7 +53,7 @@ int main(int __attribute__((unused)) argc,
                 exec_sep(tab, env, str, i);
             }
             else {
-                if (env_modif(env, tab) || change_directory(tab) || detect_pipe(str))
+                if (env_modif(env, tab) || change_directory(env, tab) || detect_pipe(str))
                     break;
                 i = 0;
                 pathtab2 = get_path(env);

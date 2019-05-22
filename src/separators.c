@@ -92,7 +92,7 @@ void exec_sep(char **tab, char **env, char *str, int i)
                 strcat(pipe, cmd[y]);
                 strcat(pipe, " ");
             }
-            if (env_modif(env, cmd) || change_directory(cmd) || detect_pipe(pipe)) {
+            if (env_modif(env, cmd) || change_directory(env, cmd) || detect_pipe(pipe)) {
                 if (tab[a] == NULL)
                     break;
                 a++;
