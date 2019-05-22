@@ -31,6 +31,16 @@ struct element
     struct element *nxt;
 };
 
+typedef struct semic_s
+{
+    int i;
+    int a;
+    char **cmd;
+    char **pathtab2;
+    char *pathtab;
+    char *pipe;
+}semic_t;
+
 typedef element_t* list_t;
 
 int my_strlen(char const *str);
@@ -85,5 +95,13 @@ int check_sep(char *str);
 char **add_path(char **env);
 char *get_home_env(char **env);
 int cd_home(char **tab, char *buff, size_t b, char *home_str);
+int my_strlentab(char **tab);
+int my_strlencmd(char const *str);
+void malloc_cmd(semic_t *sem, char **tab, char *str);
+int check_builtins_semic(semic_t *sem, char **tab, char **env);
+void free_data(semic_t *sem);
+void acces_semi(semic_t *sem, char *str, char **env);
+void body_loop(semic_t *sem, char **tab, char *str, char **env);
+void exec_sep(char **tab, char **env, char *str, int i);
 
 #endif

@@ -7,116 +7,62 @@
 
 #include "my.h"
 
-int check_sep(char *str)
+void malloc_cmd(semic_t *sem, char **tab, char *str)
 {
-    for (int a = 0; str[a] != '\0'; a++)
-        if (str[a] == ';') {
+    sem->pipe = malloc(sizeof(char) * 50);
+    sem->cmd = malloc(sizeof(char *) * my_strlentab(tab) + 1);
+    for (int g = 0; g != my_strlencmd(str) - 1; g++)
+        sem->cmd[g] = malloc(sizeof(char) * my_strlencmd(str));
+    sem->cmd = check_acces_sep(sem->cmd, tab, &sem->a);
+    for (int y = 0; sem->cmd[y] != NULL; y++) {
+            strcat(sem->pipe, sem->cmd[y]);
+            strcat(sem->pipe, " ");
+    }
+}
+
+int check_builtins_semic(semic_t *sem, char **tab, char **env)
+{
+    if (env_modif(env, sem->cmd) || change_directory(env, sem->cmd) ||
+        detect_pipe(sem->pipe)) {
+        if (tab[sem->a] == NULL)
             return (1);
-        }
+        sem->a++;
+        for (int x = 0; sem->cmd[x] != NULL; x++)
+            free(sem->cmd[x]);
+        free(sem->pipe);
+        return (1);
+    }
     return (0);
 }
 
-char **check_acces_sep(char **cmd, char **tab, int *a)
+void free_data(semic_t *sem)
 {
-    int b = 0;
-
-    for (; tab[*a] != NULL; *a += 1) {
-        if (!strcmp(tab[*a], ";") || !strcmp(tab[*a], "&&") ||
-            !strcmp(tab[*a], "||"))
-            break;
-        cmd[b] = tab[*a];
-        b++;
-    }
-    cmd[b] = '\0';
-    return (cmd);
+    for (int x = 0; sem->cmd[x] != NULL; x++)
+        free(sem->cmd[x]);
+    free(sem->cmd);
+    free(sem->pipe);
 }
 
-char *acces_sep(char **pathtab2, char **cmd, char *pathtab, int *i)
+void acces_semi(semic_t *sem, char *str, char **env)
 {
-    while (pathtab2[*i] != NULL) {
-        pathtab2[*i] = my_strcat(pathtab2[*i], "/");
-        pathtab2[*i] = my_strcat(pathtab2[*i], cmd[0]);
-        if (access(pathtab2[*i], F_OK) == 0) {
-            pathtab = pathtab2[*i];
-            return (pathtab);
-        }
-        *i += 1;
-    }
-    return (NULL);
+    sem->i = 0;
+    sem->pathtab2 = get_path(env);
+    sem->pathtab = acces_sep(sem->pathtab2, sem->cmd, sem->pathtab, &sem->i);
+    if (access(sem->pathtab2[sem->i], F_OK) == -1)
+        sem->pathtab = str;
+    main_execution(sem->pathtab, sem->cmd, env, str);
 }
 
-int my_strlentab(char **tab)
+void body_loop(semic_t *sem, char **tab, char *str, char **env)
 {
-    int a = 0;
-
-    for (; tab[a] != NULL; a++) {
-        if (!strcmp(tab[a], ";"))
-            return (a);
-        a++;
-    }
-    return (a);
-}
-
-int my_strlencmd(char const *str)
-{
-    int i = 0;
-    int y = 0;
-    int z = 0;
-
-    for (; str[i] != '\0'; i++) {
-        z++;
-        if (str[i] == ' ' && z > y)
-            y = i;
-        else
-            z = 0;
-    }
-    return (y);
-}
-
-void exec_sep(char **tab, char **env, char *str, int i)
-{
-    char **cmd = NULL;
-    int a = 0;
-    char *pathtab = 0;
-    char **pathtab2 = 0;
-    char *pipe = NULL;
-
     while (1) {
-        while (1) {
-            pipe = malloc(sizeof(char) * 50);
-            cmd = malloc(sizeof(char *) * my_strlentab(tab) + 1);
-            for (int g = 0; g != my_strlencmd(str) - 1; g++)
-                cmd[g] = malloc(sizeof(char) * my_strlencmd(str));
-            cmd = check_acces_sep(cmd, tab, &a);
-            for (int y = 0; cmd[y] != NULL; y++) {
-                strcat(pipe, cmd[y]);
-                strcat(pipe, " ");
-            }
-            if (env_modif(env, cmd) || change_directory(env, cmd) || detect_pipe(pipe)) {
-                if (tab[a] == NULL)
-                    break;
-                a++;
-                for (int x = 0; cmd[x] != NULL; x++)
-                    free(cmd[x]);
-                free(pipe);
-                break;
-            }
-            i = 0;
-            pathtab2 = get_path(env);
-            pathtab = acces_sep(pathtab2, cmd, pathtab, &i);
-            if (access(pathtab2[i], F_OK) == -1)
-                pathtab = str;
-            main_execution(pathtab, cmd, env, str);
-            if (tab[a] == NULL)
-                break;
-            a++;
-            for (int x = 0; cmd[x] != NULL; x++)
-                free(cmd[x]);
-            free(cmd);
-            free(pipe);
-        }
-        if (tab[a] == NULL)
-                break;
+        malloc_cmd(sem, tab, str);
+        if (check_builtins_semic(sem, tab, env))
+            break;
+        acces_semi(sem, str, env);
+        if (tab[sem->a] == NULL)
+            break;
+        sem->a++;
+        free_data(sem);
     }
-    
 }
