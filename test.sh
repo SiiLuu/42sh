@@ -8,6 +8,7 @@ else
     echo "RAYAYAIE"
 fi
 echo
+
 echo "ls ; ls -a" | ./42sh c
 if [ $? == 0 ]
 then
@@ -44,7 +45,7 @@ else
 fi
 echo
 
-echo "ls ; ls -a ; ls | grep src | wc -l" | ./42sh c
+echo "ls | grep src | wc -l ; ls -a" | ./42sh c
 if [ $? == 0 ]
 then
     echo "ALLO J'ENVOIE"
@@ -53,7 +54,25 @@ else
 fi
 echo
 
-echo "ls | grep src | wc -l ; ls -a" | ./42sh c
+echo "cd include ; ls ; cd .. ; ls ; pwd ; ls | grep src | wc -l ; ls -a" | ./42sh c
+if [ $? == 0 ]
+then
+    echo "ALLO J'ENVOIE"
+else
+    echo "RAYAYAIE"
+fi
+echo
+
+echo "cd include ; ls ; cd .. ; ls -a ; pwd ; ls | grep src | wc -l ; id ; who" | ./42sh c
+if [ $? == 0 ]
+then
+    echo "ALLO J'ENVOIE"
+else
+    echo "RAYAYAIE"
+fi
+echo
+
+echo "ls ; ls -a ; ls | grep src | wc -l" | ./42sh c
 if [ $? == 0 ]
 then
     echo "ALLO J'ENVOIE"

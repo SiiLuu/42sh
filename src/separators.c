@@ -27,6 +27,7 @@ char **check_acces_sep(char **cmd, char **tab, int *a)
         cmd[b] = tab[*a];
         b++;
     }
+    cmd[b] = '\0';
     return (cmd);
 }
 
@@ -92,8 +93,11 @@ void exec_sep(char **tab, char **env, char *str, int i)
                 strcat(pipe, " ");
             }
             if (env_modif(env, cmd) || change_directory(cmd) || detect_pipe(pipe)) {
+                if (tab[a] == NULL)
+                    break;
                 a++;
-                free(cmd);
+                for (int x = 0; cmd[x] != NULL; x++)
+                    free(cmd[x]);
                 free(pipe);
                 break;
             }
@@ -106,10 +110,13 @@ void exec_sep(char **tab, char **env, char *str, int i)
             if (tab[a] == NULL)
                 break;
             a++;
+            for (int x = 0; cmd[x] != NULL; x++)
+                free(cmd[x]);
             free(cmd);
             free(pipe);
         }
         if (tab[a] == NULL)
                 break;
     }
+    
 }
