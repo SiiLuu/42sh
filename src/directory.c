@@ -28,14 +28,20 @@ char **empty_env(char **env)
     return (env);
 }
 
-int change_directory(char **tab)
+int change_directory(char **env, char **tab)
 {
-    char *buff;
+    char *buff = NULL;
+    char *home_str = NULL;
     int status = 0;
     size_t b = 128;
 
+    home_str = get_home_env(env);
+    if (home_str == NULL)
+        return (1);
     buff = malloc(sizeof(char) * 128);
-    status = manage_cd_params(tab, buff, b);
+    status = manage_cd_params(tab, buff, b, home_str);
+    free(buff);
+    free(home_str);
     return (status);
 }
 

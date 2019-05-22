@@ -49,7 +49,7 @@ char *my_strcat(char *dest, char const *src);
 char **sort_path(char **pathtab, char *path);
 char *find_path(char **env, char **tab);
 char **empty_env(char **env);
-int change_directory(char **tab);
+int change_directory(char **env, char **tab);
 int main_execution(char *pathtab, char **tab, char **env, char *str);
 void control_c(int __attribute__((unused)) contrl);
 int my_strcmp(char const *s1, char const *s2);
@@ -77,11 +77,13 @@ bool check_param_setenv(char **pathtab);
 int detect_pipe(char *str);
 char ***fill_tab(char *str2, char ***cmd, int pipe_nbr);
 char ***free_tab(char ***cmd);
-int manage_cd_params(char **tab, char *buff, size_t b);
+int manage_cd_params(char **tab, char *buff, size_t b, char *home_str);
 void exec_sep(char **tab, char **env, char *str, int i);
 char *acces_sep(char **pathtab2, char **cmd, char *pathtab, int *i);
 char **check_acces_sep(char **cmd, char **tab, int *a);
 int check_sep(char *str);
 char **add_path(char **env);
+char *get_home_env(char **env);
+int cd_home(char **tab, char *buff, size_t b, char *home_str);
 
 #endif
