@@ -56,11 +56,11 @@ int catch_seg_fault(pid_t pid, int return_value)
         else {
             return_value = status;
             if (WTERMSIG(status) == 8 && WCOREDUMP(status))
-                my_printf("Floating point exception (core dumped)\n");
+                my_printf("Floating exception (core dumped)\n");
             if (WTERMSIG(status) == 11 && WCOREDUMP(status))
                 my_printf("Segmentation fault (core dumped)\n");
             if (WTERMSIG(status) == 8 && !WCOREDUMP(status))
-                my_printf("Floating point exception\n");
+                my_printf("Floating exception\n");
             if (WTERMSIG(status) == 11 && !WCOREDUMP(status))
                 my_printf("Segmentation fault\n");
         }
