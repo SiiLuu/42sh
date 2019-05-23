@@ -114,7 +114,7 @@ int main_execution(char *pathtab, char **tab, char **env, char *str)
     else if (pid == 0) {
         i = execve(pathtab, tab, env);
         if (errno == 8)
-            my_printf("%s: Exec format error. Wrong architecture.\n", pathtab);
+            my_printf("%s: Exec format error. Wrong Architecture.\n", pathtab);
         if (i == -1)
             check_file_format(pathtab, str, pid);
     }
