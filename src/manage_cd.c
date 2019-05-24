@@ -65,9 +65,9 @@ char *get_home_env(char **env)
         env[i][2] == 'M' && env[i][3] == 'E' && env[i][4] == '=')
             break;
     }
-    if (env[i][0] == 'H' && env[i][1] == 'O' &&
-        env[i][2] == 'M' && env[i][3] == 'E' &&
-        env[i][4] == '=') {
+    if (env[i] == NULL)
+        return (NULL);
+    if (strncmp(env[i], "HOME=", 5) == 0) {
         home = malloc(sizeof(char) * my_strlen(env[i]) - 4);
         for (j = 0; env[i][j] != '='; j++);
         j = j + 1;
