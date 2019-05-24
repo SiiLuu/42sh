@@ -38,3 +38,40 @@ int check_or(char *str)
         }
     return (0);
 }
+
+char **empty_env(char **env)
+{
+    int count = 0;
+
+    if (env[0] == 0) {
+        env[0] = "PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin";
+        env[1] = NULL;
+        return (env);
+    }
+    for (int i = 0; env[i] != NULL; i++) {
+        if (env[i][0] == 'P' && env[i][1] == 'A' && env[i][2] == 'T' &&
+            env[i][3] == 'H' && env[i][4] == '=')
+            count = 1;
+    } 
+    if (count != 1) {
+        env = add_path(env);
+    }
+    return (env);
+}
+
+int change_directory(char **env, char **tab)
+{
+    char *buff = NULL;
+    char *home_str = NULL;
+    int status = 0;
+    size_t b = 128;
+
+    home_str = get_home_env(env);
+    if (home_str == NULL)
+        return (1);
+    buff = malloc(sizeof(char) * 128);
+    status = manage_cd_params(tab, buff, b, home_str);
+    free(buff);
+    free(home_str);
+    return (status);
+}

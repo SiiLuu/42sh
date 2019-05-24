@@ -100,5 +100,7 @@ int check_or(char *str);
 int simple_command(char **tab, char **env, simpl_t *sim);
 int check_advenced(char **tab, char **env, simpl_t *sim);
 int main_loop(char **tab, char **env, simpl_t *sim);
+char **empty_env(char **env);
+int change_directory(char **env, char **tab);
 
 #endif

@@ -55,6 +55,11 @@ int main_loop(char **tab, char **env, simpl_t *sim)
             return (1);
         if (my_strlen(sim->str) == 0)
             break;
+        if (sim->str[0] == 'b' && sim->str[1] == 'i' && sim->str[2] == 'n' &&
+            sim->str[3] == '/') {
+            dprintf(2, "%s: Command not found.\n", sim->str);
+            break;
+        }
         tab = my_str_to_word_array(sim->str);
         if (check_advenced(tab, env, sim))
             break;
