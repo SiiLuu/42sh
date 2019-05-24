@@ -64,5 +64,6 @@ int main_loop(char **tab, char **env, simpl_t *sim)
         if (check_advenced(tab, env, sim))
             break;
     }
+    //faire des free j'arrive pas sans tout casser wola
     return (0);
 }
