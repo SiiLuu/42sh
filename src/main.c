@@ -15,8 +15,9 @@ int main(int __attribute__((unused)) argc,
 
     sim->i = 0;
     env = empty_env(env);
-    while (1)
+    while (1) {
         if (main_loop(tab, env, sim))
             return (0);
+    }
     return (0);
 }

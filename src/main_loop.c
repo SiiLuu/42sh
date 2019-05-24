@@ -63,8 +63,6 @@ int main_loop(char **tab, char **env, simpl_t *sim)
         tab = my_str_to_word_array(sim->str);
         if (check_advenced(tab, env, sim))
             break;
-        free(tab);
-        free(sim);
     }
     return (0);
 }
