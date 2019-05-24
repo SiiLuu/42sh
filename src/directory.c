@@ -25,6 +25,7 @@ char **empty_env(char **env)
     if (count != 1) {
         env = add_path(env);
     }
+    //PATH=/
     return (env);
 }
 
