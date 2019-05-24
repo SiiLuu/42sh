@@ -39,6 +39,14 @@ typedef struct semic_s
     char *pipe;
 }semic_t;
 
+typedef struct simpl_s
+{
+    int i;
+    char *str;
+    char **pathtab2;
+    char *pathtab;
+}simpl_t;
+
 typedef element_t* list_t;
 
 char **sort_path(char **pathtab, char *path);
@@ -73,7 +81,7 @@ int detect_pipe(char *str);
 char ***fill_tab(char *str2, char ***cmd, int pipe_nbr);
 char ***free_tab(char ***cmd);
 int manage_cd_params(char **tab, char *buff, size_t b, char *home_str);
-void exec_sep(char **tab, char **env, char *str, int i);
+void exec_sep(char **tab, char **env, simpl_t *sim);
 char *acces_sep(char **pathtab2, char **cmd, char *pathtab, int *i);
 char **check_acces_sep(char **cmd, char **tab, int *a);
 int check_sep(char *str);
@@ -87,7 +95,10 @@ int check_builtins_semic(semic_t *sem, char **tab, char **env);
 void free_data(semic_t *sem);
 void acces_semi(semic_t *sem, char *str, char **env);
 void body_loop(semic_t *sem, char **tab, char *str, char **env);
-void exec_sep(char **tab, char **env, char *str, int i);
-
+int check_and(char *str);
+int check_or(char *str);
+int simple_command(char **tab, char **env, simpl_t *sim);
+int check_advenced(char **tab, char **env, simpl_t *sim);
+int main_loop(char **tab, char **env, simpl_t *sim);
 
 #endif

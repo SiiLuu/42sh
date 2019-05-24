@@ -19,6 +19,7 @@ SRC	=	lib/my_putchar.c\
 		lib/my_strcpy.c\
 		lib/str_to_word_tab_limited.c\
 		src/main.c\
+		src/main_loop.c\
 		src/body_semic.c\
 		src/directory.c\
 		src/ctrlc.c\
