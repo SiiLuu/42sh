@@ -57,21 +57,19 @@ char *get_home_env(char **env)
 {
     int i = 0;
     int j = 0;
-    int k = 0;
     char *home = NULL;
 
     for (i = 0; env[i] != NULL; i++) {
-        if (env[i][0] == 'H' && env[i][1] == 'O' &&
-        env[i][2] == 'M' && env[i][3] == 'E' && env[i][4] == '=')
+        if (strncmp(env[i], "HOME=", 5) == 0)
             break;
     }
     if (env[i] == NULL)
         return (NULL);
-    if (strncmp(env[i], "HOME=", 5) == 0) {
+    else if (strncmp(env[i], "HOME=", 5) == 0) {
         home = malloc(sizeof(char) * my_strlen(env[i]) - 4);
         for (j = 0; env[i][j] != '='; j++);
         j = j + 1;
-        for (k = 0; env[i][j] != '\0'; k++, j++) {
+        for (int k = 0; env[i][j] != '\0'; k++, j++) {
             home[k] = env[i][j];
         }
     }
