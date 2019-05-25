@@ -11,7 +11,7 @@ int manage_cd_params(char **tab, char *buff, size_t b, char *home_str)
 {
     if ((tab[0][0] == 'c' && tab[0][1] == 'd' && tab[0][2] == '\0') &&
         (tab[1] == NULL || tab[1][0] == '~')) {
-        cd_home(tab, buff, b, home_str);
+        cd_home(tab, home_str);
         return (1);
     }
     else if (tab[0][0] == 'c' && tab[0][1] == 'd' && tab[0][2] == '\0' &&
@@ -31,12 +31,15 @@ int manage_cd_params(char **tab, char *buff, size_t b, char *home_str)
     return (0);
 }
 
-int cd_home(char **tab, char *buff, size_t b, char *home_str)
+int cd_home(char **tab, char *home_str)
 {
     int i = 1;
-    int j = my_strlen(home_str);
+    int j = 0;
     char *h_path = NULL;
 
+    if (home_str == NULL)
+        return (1);
+    j = my_strlen(home_str);
     if (tab[1] == NULL)
         chdir(home_str);
     else {
