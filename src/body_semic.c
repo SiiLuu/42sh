@@ -13,7 +13,8 @@ void exec_sep(char **tab, char **env, simpl_t *sim)
 
     sem->i = sim->i;
     while (1) {
-        body_loop(sem, tab, sim->str, env);
+        if (body_loop(sem, tab, sim->str, env))
+            break;
         if (tab[sem->a] == NULL)
                 break;
     }
@@ -23,8 +24,11 @@ void exec_sep(char **tab, char **env, simpl_t *sim)
 
 int check_and(char *str)
 {
+    if (str[0] == '&' && str[1] == '&')
+        return (0);
     for (int a = 0; str[a] != '\0'; a++)
-        if (str[a] == '&' && str[a + 1] == '&') {
+        if (str[a] == '&' && str[a + 1] == '&' && (str[a + 2] != '\0' ||
+        str[a + 2] != '\n')) {
             return (1);
         }
     return (0);
@@ -32,8 +36,11 @@ int check_and(char *str)
 
 int check_or(char *str)
 {
+    if (str[0] == '|' && str[1] == '|')
+        return (0);
     for (int a = 0; str[a] != '\0'; a++)
-        if (str[a] == '|' && str[a + 1] == '|') {
+        if (str[a] == '|' && str[a + 1] == '|' && (str[a + 2] != '\0' ||
+        str[a + 2] != '\n')) {
             return (1);
         }
     return (0);
@@ -52,7 +59,7 @@ char **empty_env(char **env)
         if (env[i][0] == 'P' && env[i][1] == 'A' && env[i][2] == 'T' &&
             env[i][3] == 'H' && env[i][4] == '=')
             count = 1;
-    } 
+    }
     if (count != 1) {
         env = add_path(env);
     }
