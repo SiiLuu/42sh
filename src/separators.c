@@ -67,6 +67,10 @@ int acces_semi(semic_t *sem, char *str, char **env)
         if (main_execution_and(sem->pathtab, sem->cmd, env, str))
             return (1);
     }
+    else if (check_or(str)) {
+        if (main_execution_or(sem->pathtab, sem->cmd, env, str))
+            return (1);
+    }
     else
         main_execution(sem->pathtab, sem->cmd, env, str);
     return (0);
@@ -86,7 +90,7 @@ int body_loop(semic_t *sem, char **tab, char *str, char **env)
         if (tab[sem->a] == NULL)
             break;
         sem->a++;
-        free_data(sem);
+        //free_data(sem);
     }
     return (0);
 }
