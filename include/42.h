@@ -93,8 +93,8 @@ int my_strlencmd(char const *str);
 void malloc_cmd(semic_t *sem, char **tab, char *str);
 int check_builtins_semic(semic_t *sem, char **tab, char **env);
 void free_data(semic_t *sem);
-void acces_semi(semic_t *sem, char *str, char **env);
-void body_loop(semic_t *sem, char **tab, char *str, char **env);
+int acces_semi(semic_t *sem, char *str, char **env);
+int body_loop(semic_t *sem, char **tab, char *str, char **env);
 int check_and(char *str);
 int check_or(char *str);
 int simple_command(char **tab, char **env, simpl_t *sim);
@@ -102,5 +102,11 @@ int check_advenced(char **tab, char **env, simpl_t *sim);
 int main_loop(char **tab, char **env, simpl_t *sim);
 char **empty_env(char **env);
 int change_directory(char **env, char **tab);
+int check_exist_and(char *pathtab, char **tab);
+int check_return(int return_value);
+int main_execution_and(char *pathtab, char **tab, char **env, char *str);
+int catch_seg_fault(pid_t pid, int return_value);
+void check_file_format(char *pathtab, char *str, pid_t pid);
+int echo_command(char **tab, int return_value);
 
 #endif
