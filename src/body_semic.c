@@ -74,8 +74,6 @@ int change_directory(char **env, char **tab)
     size_t b = 128;
 
     home_str = get_home_env(env);
-    if (home_str == NULL)
-        return (1);
     buff = malloc(sizeof(char) * 128);
     status = manage_cd_params(tab, buff, b, home_str);
     free(buff);

@@ -87,7 +87,7 @@ char **check_acces_sep(char **cmd, char **tab, int *a);
 int check_sep(char *str);
 char **add_path(char **env);
 char *get_home_env(char **env);
-int cd_home(char **tab, char *buff, size_t b, char *home_str);
+int cd_home(char **tab, char *home_str);
 int my_strlentab(char **tab);
 int my_strlencmd(char const *str);
 void malloc_cmd(semic_t *sem, char **tab, char *str);
