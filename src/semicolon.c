@@ -10,7 +10,7 @@
 int check_sep(char *str)
 {
     for (int a = 0; str[a] != '\0'; a++)
-        if (str[a] == ';') {
+        if (str[a] == ';' && str[a + 1] != '\0' && str[a + 1] != '\n') {
             return (1);
         }
     return (0);
