@@ -7,6 +7,15 @@
 
 #include "my.h"
 
+void loop_dup(char ***cmd, int p[])
+{
+    if (*(cmd + 1) != NULL)
+        dup2(p[1], 1);
+    close(p[0]);
+    execvp((*cmd)[0], *cmd);
+    exit(EXIT_FAILURE);
+}
+
 void loop_pipe(char ***cmd) 
 {
     int p[2];
@@ -19,19 +28,15 @@ void loop_pipe(char ***cmd)
             exit(EXIT_FAILURE);
         else if (pid == 0) {
             dup2(fd_in, 0);
-            if (*(cmd + 1) != NULL)
-                dup2(p[1], 1);
-            close(p[0]);
-            execvp((*cmd)[0], *cmd);
-            exit(EXIT_FAILURE);
+            loop_dup(cmd, p);
         }
         else {
-            wait(NULL);
             close(p[1]);
             fd_in = p[0];
             cmd++;
         }
     }
+    waitpid(pid, 0, 0);
 }
 
 int count_pipe(char *str)
