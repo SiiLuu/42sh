@@ -53,7 +53,6 @@ int cd_home(char **tab, char *home_str)
         free(h_path);
     }
     return (1);
-
 }
 
 char *get_home_env(char **env)
