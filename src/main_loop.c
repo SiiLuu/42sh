@@ -10,7 +10,7 @@
 int simple_command(char **tab, char **env, simpl_t *sim)
 {
     if (env_modif(env, tab) || change_directory(env, tab) ||
-        detect_pipe(sim->str) || history(sim->str) || 
+        detect_pipe(sim->str) || history(sim->str) ||
         check_if_redirect(sim->str, env))
         return (1);
     sim->i = 0;

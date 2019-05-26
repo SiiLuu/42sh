@@ -42,7 +42,8 @@ static int redirect_to_fd(char *redi, char *filename)
     }
     if (redi[1] == '>')
         mode = 1;
-    if ((redi[1] != '\0' && redi[1] != '>') || (redi[1] == '>' && redi[2] != '\0'))
+    if ((redi[1] != '\0' && redi[1] != '>') ||
+        (redi[1] == '>' && redi[2] != '\0'))
         fd = open_fd(&redi[1], mode);
     else if (filename != NULL)
         fd = open_fd(filename, mode);

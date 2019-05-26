@@ -48,7 +48,7 @@ typedef struct simpl_s
     char *pathtab;
 }simpl_t;
 
-typedef element_t* list_t;
+typedef element_t *list_t;
 
 char **sort_path(char **pathtab, char *path);
 char *find_path(char **env, char **tab);

@@ -16,7 +16,7 @@ void loop_dup(char ***cmd, int p[])
     exit(EXIT_FAILURE);
 }
 
-void loop_pipe(char ***cmd) 
+void loop_pipe(char ***cmd)
 {
     int p[2];
     pid_t pid;

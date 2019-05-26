@@ -27,7 +27,7 @@ static char *string_cleaner(char *command)
     while (command[i] != '\0'){
         while (command[i] == ' ' || command[i] == '\t')
             i++;
-        while (command[i] != ' ' && command[i] != '\t' && command[i] != '\0'){
+        while (command[i] != ' ' && command[i] != '\t' && command[i] != '\0') {
             copy[p] = command[i];
             i++;
             p++;

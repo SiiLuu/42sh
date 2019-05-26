@@ -7,7 +7,6 @@
 
 #include "my.h"
 
-
 char **split(const char *str, const char *delim)
 {
     char *aux;
