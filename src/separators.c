@@ -90,7 +90,6 @@ int body_loop(semic_t *sem, char **tab, char *str, char **env)
         if (tab[sem->a] == NULL)
             break;
         sem->a++;
-        //free_data(sem);
     }
     return (0);
 }

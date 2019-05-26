@@ -33,8 +33,7 @@ char **get_path(char **env)
     while (env[i] != NULL) {
         if (env[i][0] == 'P' && env[i][1] == 'A'
             && env[i][2] == 'T' && env[i][3] == 'H') {
-            if ((path = malloc(sizeof(char *) * my_strlen(env[i]))) == NULL)
-                exit(84);
+            path = malloc(sizeof(char *) * my_strlen(env[i]));
             path = init_path(path , env[i]);
             res = str_to_word_tab_limited(path, ':');
         }

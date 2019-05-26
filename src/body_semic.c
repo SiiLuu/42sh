@@ -18,8 +18,6 @@ void exec_sep(char **tab, char **env, simpl_t *sim)
         if (tab[sem->a] == NULL)
             break;
     }
-    //free(sem->pathtab);
-    //free(sem);
 }
 
 int check_and(char *str)
