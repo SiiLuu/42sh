@@ -7,6 +7,14 @@
 
 #include "my.h"
 
+int prog_return(pid_t pid, int return_value)
+{
+    return_value = catch_seg_fault(pid, return_value);
+    if (check_return(return_value))
+        return (1);
+    return (0);
+}
+
 void define_seg_fault(int status)
 {
     if (WTERMSIG(status) == 8 && WCOREDUMP(status))

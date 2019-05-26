@@ -61,8 +61,7 @@ int main_execution_and(char *pathtab, char **tab, char **env, char *str)
         return (0);
     pid = fork();
     if (pid > 0) {
-        return_value = catch_seg_fault(pid, return_value);
-        if (check_return(return_value))
+        if (prog_return(pid, return_value))
             return (1);
     }
     else if (pid == 0) {
