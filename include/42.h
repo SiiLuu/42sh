@@ -114,5 +114,6 @@ void define_seg_fault(int status);
 int history(char *str);
 void display_history(list_t list);
 void display_inversed_history(list_t list);
+int check_if_redirect(char *str, char **env);
 
 #endif

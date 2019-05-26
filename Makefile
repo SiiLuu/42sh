@@ -39,6 +39,7 @@ SRC	=	lib/my_putchar.c\
 		src/exec_or.c\
 		src/seg_fault.c\
 		src/history.c\
+		src/redirections.c\
 		src/display_history.c
 
 OBJ 	=	$(SRC:.c=.o)
