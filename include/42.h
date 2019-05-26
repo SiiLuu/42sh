@@ -33,6 +33,7 @@ struct element
 typedef struct semic_s
 {
     int i;
+    int status;
     int a;
     char **cmd;
     char **pathtab2;
@@ -43,6 +44,7 @@ typedef struct semic_s
 typedef struct simpl_s
 {
     int i;
+    int status;
     char *str;
     char **pathtab2;
     char *pathtab;
@@ -52,12 +54,12 @@ typedef element_t *list_t;
 
 char **sort_path(char **pathtab, char *path);
 char *find_path(char **env, char **tab);
-char **empty_env(char **env);
+char **empty_env(char **env, simpl_t *sim);
 int change_directory(char **env, char **tab);
 int main_execution(char *pathtab, char **tab, char **env, char *str);
 void control_c(int __attribute__((unused)) contrl);
 int my_strcmp(char const *s1, char const *s2);
-int env_modif(char **env, char **pathtab);
+int env_modif(char **env, char **pathtab, int i);
 int check_exist(char *pathtab, char *str);
 int strcomp_env(char *src1, char *src2);
 list_t delete_list(list_t list);
@@ -101,7 +103,6 @@ int check_or(char *str);
 int simple_command(char **tab, char **env, simpl_t *sim);
 int check_advenced(char **tab, char **env, simpl_t *sim);
 int main_loop(char **tab, char **env, simpl_t *sim);
-char **empty_env(char **env);
 int change_directory(char **env, char **tab);
 int check_exist_and(char *pathtab, char **tab);
 int check_return(int return_value);

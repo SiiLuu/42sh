@@ -45,11 +45,11 @@ int check_display_env(char **pathtab, list_t list)
     return (0);
 }
 
-int env_modif(char **env, char **pathtab)
+int env_modif(char **env, char **pathtab, int status)
 {
     static list_t list = NULL;
 
-    if (checkenv_pline(env) == true)
+    if (status == 1)
         return (0);
     list = check_empty(list, env, count_line(env));
     if (!my_strcmp(pathtab[0], "setenv") && pathtab[1] != NULL) {

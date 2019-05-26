@@ -11,7 +11,9 @@ void exec_sep(char **tab, char **env, simpl_t *sim)
 {
     semic_t *sem = malloc(sizeof(semic_t));
 
+    sem->status = 0;
     sem->i = sim->i;
+    sem->status = sim->status;
     while (1) {
         if (body_loop(sem, tab, sim->str, env))
             break;
@@ -44,7 +46,7 @@ int check_or(char *str)
     return (0);
 }
 
-char **empty_env(char **env)
+char **empty_env(char **env, simpl_t *sim)
 {
     int count = 0;
 
@@ -60,6 +62,7 @@ char **empty_env(char **env)
     }
     if (count != 1) {
         env = add_path(env);
+        sim->status = 1;
     }
     return (env);
 }

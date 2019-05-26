@@ -22,8 +22,8 @@ void malloc_cmd(semic_t *sem, char **tab, char *str)
 
 int check_builtins_semic(semic_t *sem, char **tab, char **env)
 {
-    if (env_modif(env, sem->cmd) || change_directory(env, sem->cmd) ||
-        detect_pipe(sem->pipe)) {
+    if (env_modif(env, sem->cmd, sem->status) ||
+        change_directory(env, sem->cmd) || detect_pipe(sem->pipe)) {
         if (tab[sem->a] == NULL)
             return (1);
         sem->a++;
