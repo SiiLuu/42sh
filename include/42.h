@@ -115,5 +115,6 @@ int history(char *str);
 void display_history(list_t list);
 void display_inversed_history(list_t list);
 int check_if_redirect(char *str, char **env);
+bool checkenv_pline(char **env);
 
 #endif

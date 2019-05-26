@@ -78,3 +78,12 @@ char *get_home_env(char **env)
     }
     return (home);
 }
+
+bool checkenv_pline(char **env)
+{
+    for (int i = 0; env[i] != NULL; i++) {
+        if (strncmp(env[i], "PATH=", 5) == 0)
+            return (true);
+    }
+    return (false);
+}

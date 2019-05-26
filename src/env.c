@@ -50,6 +50,8 @@ int env_modif(char **env, char **pathtab)
     static list_t list = NULL;
     int i = count_line(env);
 
+    if (checkenv_pline(env) == true)
+        return (0);
     list = check_empty(list, env, i);
     if (!my_strcmp(pathtab[0], "setenv") && pathtab[1] != NULL) {
         if (check_param_setenv(pathtab) == true) {
