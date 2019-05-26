@@ -9,19 +9,11 @@
 
 char *add_format_time(char *time_str, char *new_str)
 {
-    int compt = 0;
+    bool quit = 0;
+    int i = 0;
 
-    for (int i = 0; time_str[i] != '\0'; i++) {
-        if (time_str[i] == ':') {
-            i -= 2;
-            while (time_str[i] != ' ' && compt != 5) {
-                new_str[strlen(new_str)] = time_str[i];
-                i++;
-                compt++;
-            }
-            break;
-        }
-    }
+    for (i = 0; time_str[i] != '\0' && quit == 0; i++)
+        quit = parse_time(time_str, new_str, quit, i);
     return (new_str);
 }
 

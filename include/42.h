@@ -118,5 +118,6 @@ void display_inversed_history(list_t list);
 int check_if_redirect(char *str, char **env);
 bool checkenv_pline(char **env);
 void malloc_cmd_and(semic_t *sem, char **tab, char *str);
+bool parse_time(char *time_str, char *new_str, bool quit, int i);
 
 #endif
