@@ -15,6 +15,7 @@
 #include <string.h>
 #include <signal.h>
 #include <stdbool.h>
+#include <time.h>
 
 #ifndef MY_42_H__
 #define MY_42_H__
@@ -110,5 +111,8 @@ void check_file_format(char *pathtab, char *str, pid_t pid);
 int echo_command(char **tab, int return_value);
 int main_execution_or(char *pathtab, char **tab, char **env, char *str);
 void define_seg_fault(int status);
+int history(char *str);
+void display_history(list_t list);
+void display_inversed_history(list_t list);
 
 #endif
