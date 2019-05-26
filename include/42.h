@@ -109,5 +109,6 @@ int catch_seg_fault(pid_t pid, int return_value);
 void check_file_format(char *pathtab, char *str, pid_t pid);
 int echo_command(char **tab, int return_value);
 int main_execution_or(char *pathtab, char **tab, char **env, char *str);
+void define_seg_fault(int status);
 
 #endif

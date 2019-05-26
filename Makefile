@@ -36,7 +36,8 @@ SRC	=	lib/my_putchar.c\
 		src/manage_cd.c\
 		src/parse_pipe.c\
 		src/exec_and.c\
-		src/exec_or.c
+		src/exec_or.c\
+		src/seg_fault.c
 
 OBJ 	=	$(SRC:.c=.o)
 

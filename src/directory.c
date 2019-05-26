@@ -18,14 +18,7 @@ int catch_seg_fault(pid_t pid, int return_value)
             return_value = WEXITSTATUS(status);
         else {
             return_value = status;
-            if (WTERMSIG(status) == 8 && WCOREDUMP(status))
-                my_printf("Floating exception (core dumped)\n");
-            if (WTERMSIG(status) == 11 && WCOREDUMP(status))
-                my_printf("Segmentation fault (core dumped)\n");
-            if (WTERMSIG(status) == 8 && !WCOREDUMP(status))
-                my_printf("Floating exception\n");
-            if (WTERMSIG(status) == 11 && !WCOREDUMP(status))
-                my_printf("Segmentation fault\n");
+            define_seg_fault(status);
         }
     }
     return (return_value);
@@ -44,6 +37,18 @@ void check_file_format(char *pathtab, char *str, pid_t pid)
 
 int check_wrong_command(char *pathtab, char *str)
 {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == '&' && str[i + 1] == '&' && (str[i + 2] == '\0' ||
+        str[i + 2] == '\0')) {
+            my_putstr("Invalid null command.\n");
+            return (1);
+        }
+        if (str[i] == '|' && str[i + 1] == '|' && (str[i + 2] == '\0' ||
+        str[i + 2] == '\0')) {
+            my_putstr("Invalid null command.\n");
+            return (1);
+        }
+    }
     if (check_exist(pathtab, str))
         return (1);
     if (my_strlen(str) == 0)
