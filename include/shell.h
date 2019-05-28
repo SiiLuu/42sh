@@ -98,8 +98,6 @@ int check_builtins_semic(semic_t *sem, char **tab, char **env);
 void free_data(semic_t *sem);
 int acces_semi(semic_t *sem, char *str, char **env);
 int body_loop(semic_t *sem, char **tab, char *str, char **env);
-int check_and(char *str);
-int check_or(char *str);
 int simple_command(char **tab, char **env, simpl_t *sim);
 int check_advenced(char **tab, char **env, simpl_t *sim);
 int main_loop(char **tab, char **env, simpl_t *sim);

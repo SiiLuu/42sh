@@ -50,14 +50,6 @@ int acces_semi(semic_t *sem, char *str, char **env)
     sem->pathtab = acces_sep(sem->pathtab2, sem->cmd, sem->pathtab, &sem->i);
     if (access(sem->pathtab2[sem->i], F_OK) == -1)
         sem->pathtab = str;
-    if (check_and(str)) {
-        if (main_execution_and(sem->pathtab, sem->cmd, env, str))
-            return (1);
-    }
-    else if (check_or(str)) {
-        if (main_execution_or(sem->pathtab, sem->cmd, env, str))
-            return (1);
-    }
     else
         main_execution(sem->pathtab, sem->cmd, env, str);
     return (0);
@@ -66,10 +58,7 @@ int acces_semi(semic_t *sem, char *str, char **env)
 int body_loop(semic_t *sem, char **tab, char *str, char **env)
 {
     while (1) {
-        if (check_and(str))
-            malloc_cmd_and(sem, tab, str);
-        else
-            malloc_cmd(sem, tab, str);
+        malloc_cmd(sem, tab, str);
         if (check_builtins_semic(sem, tab, env))
             break;
         if (acces_semi(sem, str, env))

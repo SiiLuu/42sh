@@ -15,7 +15,7 @@ char **add_path(char **env)
     char **new_str = NULL;
 
     for (i = 0; env[i] != NULL; i++);
-    new_str = malloc(sizeof(char *) * (i + 1));
+    new_str = malloc(sizeof(char *) * (i + 2));
 
     for (j = 0; j != i; j++) {
         new_str[j] = env[j];

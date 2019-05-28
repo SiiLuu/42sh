@@ -22,30 +22,6 @@ void exec_sep(char **tab, char **env, simpl_t *sim)
     }
 }
 
-int check_and(char *str)
-{
-    if (str[0] == '&' && str[1] == '&')
-        return (0);
-    for (int a = 0; str[a] != '\0'; a++)
-        if (str[a] == '&' && str[a + 1] == '&' && (str[a + 2] != '\0' &&
-        str[a + 2] != '\n')) {
-            return (1);
-        }
-    return (0);
-}
-
-int check_or(char *str)
-{
-    if (str[0] == '|' && str[1] == '|')
-        return (0);
-    for (int a = 0; str[a] != '\0'; a++)
-        if (str[a] == '|' && str[a + 1] == '|' && (str[a + 2] != '\0' &&
-        str[a + 2] != '\n')) {
-            return (1);
-        }
-    return (0);
-}
-
 char **empty_env(char **env, simpl_t *sim)
 {
     int count = 0;

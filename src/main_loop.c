@@ -32,15 +32,8 @@ int simple_command(char **tab, char **env, simpl_t *sim)
 
 int check_advenced(char **tab, char **env, simpl_t *sim)
 {
-    if ((check_sep(sim->str) == 1)) {
+    if ((check_sep(sim->str) == 1))
         exec_sep(tab, env, sim);
-    }
-    else if ((check_and(sim->str) == 1)) {
-        exec_sep(tab, env, sim);
-    }
-    else if ((check_or(sim->str) == 1)) {
-        exec_sep(tab, env, sim);
-    }
     else {
         if (simple_command(tab, env, sim))
             return (1);
