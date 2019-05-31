@@ -4,20 +4,9 @@ workflows:
     Test:
         jobs:
             - compile
-                - build:
-                    requires: 
-                    - compile
  
 jobs:
     compile:
-        docker:
-            - image: gcc:8.2
-        steps:
-            - checkout
-            - run: make
- 
-    build:
-        compile:
         docker:
             - image: epitechcontent/epitest-docker
         steps:
