@@ -3,16 +3,10 @@ version: 2.1
 workflows:
     Test:
         jobs:
-            - compile
-            - run:
-                requires: 
-                - compile
- 
-jobs:
-    run:
-        docker:
-            - image: epitechcontent/epitest-docker
-        steps:
-            - checkout
-            - run: make
-            - run: ./test.sh
+            compile-run:
+                docker:
+                    - image: epitechcontent/epitest-docker
+                steps:
+                    - checkout
+                    - run: make
+                    - run: ./test.sh
