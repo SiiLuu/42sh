@@ -1,10 +1,10 @@
 version: 2.1
  
 workflows:
-    compile-run:
+    Test:
         jobs:
             - compile
-            - compile-run:
+            - build:
                 requires: 
                 - compile
  
@@ -16,7 +16,7 @@ jobs:
             - checkout
             - run: make
  
-    run:
+    build:
         compile:
         docker:
             - image: epitechcontent/epitest-docker
