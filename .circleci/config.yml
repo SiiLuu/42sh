@@ -3,10 +3,10 @@ version: 2.1
 workflows:
     Test:
         jobs:
-            - compile
+            - compile-build
  
 jobs:
-    compile:
+    compile-build:
         docker:
             - image: epitechcontent/epitest-docker
         steps:
