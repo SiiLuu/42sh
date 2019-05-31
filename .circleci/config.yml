@@ -17,7 +17,7 @@ jobs:
             - run: make
  
     run:
-        compile:
+        ##compile:
         docker:
             - image: epitechcontent/epitest-docker
         steps:
