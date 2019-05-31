@@ -4,9 +4,9 @@ workflows:
     Test:
         jobs:
             - compile
-            - build:
-                requires: 
-                - compile
+                - build:
+                    requires: 
+                    - compile
  
 jobs:
     compile:
