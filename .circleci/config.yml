@@ -1,12 +1,26 @@
 version: 2.1
  
 workflows:
-    Test:
+    compile-run:
         jobs:
-            compile-run:
-                docker:
-                    - image: epitechcontent/epitest-docker
-                steps:
-                    - checkout
-                    - run: make
-                    - run: ./test.sh
+            - compile
+            - compile-run:
+                requires: 
+                - compile
+ 
+jobs:
+    compile:
+        docker:
+            - image: gcc:8.2
+        steps:
+            - checkout
+            - run: make
+ 
+    run:
+        compile:
+        docker:
+            - image: epitechcontent/epitest-docker
+        steps:
+            - checkout
+            - run: make
+            - run: ./test.sh
