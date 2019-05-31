@@ -3,7 +3,10 @@ version: 2.1
 workflows:
     Test:
         jobs:
+            - compile
             - run:
+                requires: 
+                - compile
  
 jobs:
     run:
