@@ -25,4 +25,5 @@ jobs:
         docker:
             - image: epitechcontent/epitest-docker
         steps:
+            - checkout
             - run: ./test.sh
